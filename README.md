@@ -4,7 +4,7 @@ simples scan para busca de erros de sql injection em sites
 # Install
 ## Linux
 
-git clone https://github.com/KeniSam01/sqlsam/
+git clone https://github.com/KeniSam01/SqlSam/
 
 # Examples
 
