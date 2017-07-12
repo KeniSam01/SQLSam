@@ -1,4 +1,4 @@
-# sqlsam
+# SqlSam
 simples scan para busca de erros de sql injection em sites
 
 # Install & Use
