@@ -29,3 +29,7 @@ python sqlsam.py --url www.github.com/noticias.php?id=123344
 ### Procurando falha utilizando a rede TOR
 
 python sqlsam.py -u www.github.com/noticias.php?id=123344 --tor yes
+
+### Demonstration:
+
+https://youtu.be/Lb1YZiW4X54
