@@ -1,6 +1,4 @@
-# -*- coding: UTF-8 -*-
-
-import re, requests, time, subprocess, argparse
+import re, requests, time, subprocess, argparse, requesocks
 from datetime import datetime
 
 def clear():
@@ -9,12 +7,15 @@ def clear():
 def banner():
     time.sleep(1)
     print '\033[32m''''
-     _______.  ______       __           _______.     ___      .___  ___. 
-    /       | /  __  \     |  |         /       |    /   \     |   \/   | 
-   |   (----`|  |  |  |    |  |        |   (----`   /  ^  \    |  \  /  | 
-    \   \    |  |  |  |    |  |         \   \      /  /_\  \   |  |\/|  | 
-.----)   |   |  `--'  '--. |  `----..----)   |    /  _____  \  |  |  |  | 
-|_______/     \_____\_____\|_______||_______/    /__/     \__\ |__|  |__|  ''''\033[0;0m'"\n"
+ .M"""bgd   .g8""8q.   `7MMF'       .M"""bgd                            
+,MI    "Y .dP'    `YM.   MM        ,MI    "Y                            
+`MMb.     dM'      `MM   MM        `MMb.      ,6"Yb.  `7MMpMMMb.pMMMb.  
+  `YMMNq. MM        MM   MM          `YMMNq. 8)   MM    MM    MM    MM  
+.     `MM MM.      ,MP   MM      , .     `MM  ,pm9MM    MM    MM    MM  
+Mb     dM `Mb.    ,dP'   MM     ,M Mb     dM 8M   MM    MM    MM    MM  
+P"Ybmmd"    `"bmmd"'   .JMMmmmmMMM P"Ybmmd"  `Moo9^Yo..JMML  JMML  JMML.
+                MMb                                                     
+                 `bood  ''''\033[0;0m'"\n"
 
 def escopo():
     time.sleep(1)
@@ -170,51 +171,54 @@ def hour():
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-u", "--url", dest="url",help="Link the website", nargs=1)
-
+parser.add_argument('--tor', dest="tor", help="Use the tool inside the TOR network (yes/no)")
 args = parser.parse_args()
 
 clear()
 
 if args.url:
-    try:
-        site = args.url[0]
+    site = args.url[0]
 
-        if not 'http://' in site:
-            url_correct = 'http://'+site
+    if not 'http://' in site:
+        url_correct = 'http://'+site
 
-        elif not 'https://' in site:
-            url_correct = 'https://'+site
+    elif not 'https://' in site:
+        url_correct = 'https://'+site
 
-        padrao = re.search(r'([\w:/\._-]+\?[\w_-]+=[\w_-]+)', url_correct)
+    padrao = re.search(r'([\w:/\._-]+\?[\w_-]+=[\w_-]+)', url_correct)
 
-        injecao = padrao.groups()[0] + "\'"
+    injecao = padrao.groups()[0] + "\'"
 
-        header = {
-            'user-agent': 'Googlebot'
-                          'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) '
-                          'Chrome/55.0.2883.87 Safari/537.36'
-                          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                          'AppleWebKit/537.36 (KHTML, like Gecko) '
-                          'Chrome/51.0.2704.103 Safari/537.36'
-                          'Mozilla/5.0 (Windows NT 6.1) '
-                          'AppleWebKit/537.36 (KHTML, like Gecko) '
-                          'Chrome/55.0.2883.87 Safari/537.36'
-                          'Mozilla/5.0 (Windows NT 6.1; rv:45.0)'
-                          'Gecko/20100101 Firefox/45.0'
-        }
-
-        req = requests.get(injecao, headers=header)
-
-        html = req.text
-    except AttributeError:
-        banner()
-        time.sleep(1)
-        print '\033[32m\n' + hour() + "[INFO] Invalid site, please try again\n"'\033[0;0m'
-        exit()
+    header = {
+        'user-agent': 'Googlebot'
+                      'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/55.0.2883.87 Safari/537.36'
+                      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                      'AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/51.0.2704.103 Safari/537.36'
+                      'Mozilla/5.0 (Windows NT 6.1) '
+                      'AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/55.0.2883.87 Safari/537.36'
+                      'Mozilla/5.0 (Windows NT 6.1; rv:45.0)'
+                      'Gecko/20100101 Firefox/45.0'
+    }
 
     banner()
 
-    if 'SQL Error' in html:
+    pagina = requests.get(injecao, headers=header)
+    html = pagina.text
+
+    if args.tor == 'yes':
+        requisicao = requesocks.session()
+        requisicao.proxies = {'http': 'socks5://127.0.0.1:9050', 'https': 'socks5://127.0.0.1:9050'}
+        pagina = requisicao.get(injecao, headers=header)
+        html = pagina.text
+
+    if 'You have an error in your SQL syntax' in html:
+        escopo()
+        your_sql()
+
+    elif 'SQL Error' in html:
         escopo()
         sqlerror()
 
@@ -225,10 +229,6 @@ if args.url:
     elif 'mysql_fetch_array()' in html:
         escopo()
         mysql_fatch_array()
-
-    elif 'You have an error in your SQL syntax' in html:
-        escopo()
-        your_sql()
 
     elif 'mysql_query()' in html:
         escopo()
@@ -274,5 +274,6 @@ if args.url:
         select_from_where_id()
 
     else:
+        print pagina.text
         escopo()
         not_vul()
