@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 import re, requests, time, subprocess, argparse
 from datetime import datetime
 
