@@ -1,4 +1,9 @@
-import re, requests, time, subprocess, argparse, requesocks
+import re
+import requests
+import time
+import subprocess
+import argparse
+import requesocks
 from datetime import datetime
 
 def clear():
@@ -6,7 +11,7 @@ def clear():
 
 def banner():
     time.sleep(1)
-    print '\033[32m''''
+    print '''
  .M"""bgd   .g8""8q.   `7MMF'       .M"""bgd                            
 ,MI    "Y .dP'    `YM.   MM        ,MI    "Y                            
 `MMb.     dM'      `MM   MM        `MMb.      ,6"Yb.  `7MMpMMMb.pMMMb.  
@@ -15,162 +20,177 @@ def banner():
 Mb     dM `Mb.    ,dP'   MM     ,M Mb     dM 8M   MM    MM    MM    MM  
 P"Ybmmd"    `"bmmd"'   .JMMmmmmMMM P"Ybmmd"  `Moo9^Yo..JMML  JMML  JMML.
                 MMb                                                     
-                 `bood  ''''\033[0;0m'"\n"
+                 `bood  '''"\n"
 
 def escopo():
     time.sleep(1)
-    print '\033[32m' + hour() + "[INFO] Testing conection with website"
+    print hour(), "[INFO] Testing connection with website"
     time.sleep(1)
-    print hour() + "[INFO] Waiting for website response"
+    print hour(), "[INFO] Waiting for website response"
     time.sleep(2)
-    print hour() + "[INFO] Presenting result: \n"'\033[0;0m'
+    print hour(), "[INFO] Presenting result: \n"
     time.sleep(1)
 
 def sqlerror():
     time.sleep(1)
-    print '\033[32m' + hour() + '[INFO] Link: ' + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour() + "[INFO] MYSQL Error: SQL Error: You have an error in your SQL syntax"
+    print hour(), "[INFO] MYSQL Error: SQL Error: You have an error in your SQL syntax"
     time.sleep(1)
-    print hour() + "[INFO] Method: GET"'\033[0;0m'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour() + "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def odbc():
     time.sleep(1)
-    print '\033[32m' + hour(), '[INFO] Link: ' + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), "[INFO] Oracle Error: [MySQL][ODBC 5.1 Driver][mysqld-4.1.22-community-nt-log]You have an error in your SQL syntax"
+    print hour(), "[INFO] Oracle Error: [MySQL][ODBC 5.1 Driver]"
+                  "[mysqld-4.1.22-community-nt-log]You have an error in your SQL syntax"
     time.sleep(1)
-    print hour(), "[INFO] Method: GET"'\033[0;0m'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def mysql_fatch_array():
     time.sleep(1)
-    print '\033[32m' + hour(), '[INFO] Link: ' + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
     print hour(), "[INFO] MYSQL Error: mysql_fetch_array()"
     time.sleep(1)
     print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def your_sql():
     time.sleep(1)
-    print '\033[32m' + hour(), '[INFO] Link: ' + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), '[INFO] MYSQL or Oracle Error: You have an error in your SQL syntax'
+    print hour(), "[INFO] MYSQL or Oracle Error: You have an error in your SQL syntax"
     time.sleep(1)
-    print hour(), '[INFO] Method: GET'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def mysql_query():
     time.sleep(1)
-    print '\033[32m' + hour(), '[INFO] Link: ' + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), '[INFO] MYSQL Error: Warning: mysql_query()'
+    print hour(), "[INFO] MYSQL Error: Warning: mysql_query()"
     time.sleep(1)
-    print hour(), '[INFO] Method: GET'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def mysql_fetch_object():
     time.sleep(1)
-    print '\033[32m' + hour(), '[INFO] Link: ' + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), '[INFO] MYSQL Error: Warning: mysql_fetch_object()'
+    print hour(), "[INFO] MYSQL Error: Warning: mysql_fetch_object()"
     time.sleep(1)
-    print hour(), '[INFO] Method: GET'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def query_failed():
     time.sleep(1)
-    print '\033[32m' + hour(), '[INFO] Link: ' + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), '[INFO] MYSQL Error: Query failed : You have an error in your SQL syntax'
+    print hour(), "[INFO] MYSQL Error: Query failed : You have an error in your SQL syntax"
     time.sleep(1)
-    print hour(), '[INFO] Method: GET'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def include():
     time.sleep(1)
-    print '\033[32m' + hour(), '[INFO] Link: ' + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), '[INFO] MYSQL Error: Warning: include() [function.include]'
+    print hour(), "[INFO] MYSQL Error: Warning: include() [function.include]"
     time.sleep(1)
-    print hour(), '[INFO] Method: GET'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def mysql_num_rows():
     time.sleep(1)
-    print '\033[32m' + hour(), "[INFO] Link: " + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), '[INFO] MYSQL Error: mysql_num_rows()'
+    print hour(), "[INFO] MYSQL Error: mysql_num_rows()"
     time.sleep(1)
-    print hour(), '[INFO] Method: GET'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def database_query_failed():
     time.sleep(1)
-    print '\033[32m' + hour(), "[INFO] Link: " + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), '[INFO] MYSQL Error: Database Query Failed'
+    print hour(), "[INFO] MYSQL Error: Database Query Failed"
     time.sleep(1)
-    print hour(), '[INFO] Method: GET'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def mysql_fetch_assoc():
     time.sleep(1)
-    print '\033[32m' + hour(), "[INFO] Link: " + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), '[INFO] MYSQL Error: mysql_fetch_assoc()'
+    print hour(), "[INFO] MYSQL Error: mysql_fetch_assoc()"
     time.sleep(1)
-    print hour(), '[INFO] Method: GET'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def mysql_free_result():
     time.sleep(1)
-    print '\033[32m' + hour(), "[INFO] Link: " + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), '[INFO] MYSQL Error: mysql_free_result()'
+    print hour(), "[INFO] MYSQL Error: mysql_free_result()"
     time.sleep(1)
-    print hour(), '[INFO] Method: GET'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def select_from_where_id():
     time.sleep(1)
-    print '\033[32m' + hour(), "[INFO] Link: " + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), '[INFO] MYSQL Error: Query failed (SELECT * FROM WHERE id = )'
+    print hour(), "[INFO] MYSQL Error: Query failed (SELECT * FROM WHERE id = )"
     time.sleep(1)
-    print hour(), '[INFO] Method: GET'
+    print hour(), "[INFO] Method: GET"
     time.sleep(1)
-    print hour(), "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def not_vul():
     time.sleep(1)
-    print '\033[31m' + hour() + '[INFO] Link: ' + site
+    print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour() + '[INFO] Non-Vulnerable Site'
+    print hour(), "[INFO] Non-Vulnerable Site"
     time.sleep(1)
-    print hour() + "[INFO] Scan completed\n"'\033[0;0m'
+    print hour(), "[INFO] Scan completed\n"
+
 
 def hour():
     now = datetime.now()
-    return "["+str(now.hour) + ":" + str(now.minute)+"]"
+    return "[" + str(now.hour) + ":" + str(now.minute) + "]"
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-u", "--url", dest="url",help="Link the website", nargs=1)
+parser.add_argument("-u", "--url", dest="url", help="Link the website", nargs=1)
 parser.add_argument('--tor', dest="tor", help="Use the tool inside the TOR network (yes/no)")
 args = parser.parse_args()
 
@@ -179,11 +199,11 @@ clear()
 if args.url:
     site = args.url[0]
 
-    if not 'http://' in site:
-        url_correct = 'http://'+site
+    if not "http://" in site:
+        url_correct = "http://"+site
 
-    elif not 'https://' in site:
-        url_correct = 'https://'+site
+    elif not "https://" in site:
+        url_correct = "https://"+site
 
     padrao = re.search(r'([\w:/\._-]+\?[\w_-]+=[\w_-]+)', url_correct)
 
@@ -201,75 +221,68 @@ if args.url:
                       'Chrome/55.0.2883.87 Safari/537.36'
                       'Mozilla/5.0 (Windows NT 6.1; rv:45.0)'
                       'Gecko/20100101 Firefox/45.0'
-    }
+            }
 
     banner()
 
     pagina = requests.get(injecao, headers=header)
     html = pagina.text
 
-    if args.tor == 'yes':
+    if args.tor == "yes":
         requisicao = requesocks.session()
         requisicao.proxies = {'http': 'socks5://127.0.0.1:9050', 'https': 'socks5://127.0.0.1:9050'}
         pagina = requisicao.get(injecao, headers=header)
         html = pagina.text
 
-    if 'You have an error in your SQL syntax' in html:
+    if "You have an error in your SQL syntax" in html:
         escopo()
         your_sql()
 
-    elif 'SQL Error' in html:
+    elif "SQL Error" in html:
         escopo()
         sqlerror()
 
-    elif '[MySQL][ODBC 5.1 Driver][mysqld-4.1.22-community-nt-log]You have an error in your SQL syntax' in html:
+    elif "[MySQL][ODBC 5.1 Driver][mysqld-4.1.22-community-nt-log]You have an error in your SQL syntax" in html:
         escopo()
         odbc()
 
-    elif 'mysql_fetch_array()' in html:
+    elif "mysql_fetch_array()" in html:
         escopo()
         mysql_fatch_array()
 
-    elif 'mysql_query()' in html:
+    elif "mysql_query()" in html:
         escopo()
         mysql_query()
 
-
-    elif 'mysql_fetch_object()' in html:
+    elif "mysql_fetch_object()" in html:
         escopo()
         mysql_fetch_object()
 
-
-    elif 'Query failed:' in html:
+    elif "Query failed:" in html:
         escopo()
         query_failed()
 
-
-    elif 'Warning include() [function.include]' in html:
+    elif "Warning include() [function.include]" in html:
         escopo()
         include()
 
-
-    elif 'mysql_num_rows()' in html:
+    elif "mysql_num_rows()" in html:
         escopo()
         mysql_num_rows()
 
-
-    elif 'Database Query Failed' in html:
+    elif "Database Query Failed" in html:
         escopo()
         database_query_failed()
 
-
-    elif 'mysql_fetch_assoc()' in html:
+    elif "mysql_fetch_assoc()" in html:
         escopo()
         mysql_fetch_assoc()
 
-    elif 'mysql_free_result()' in html:
+    elif "mysql_free_result()" in html:
         escopo()
         mysql_free_result()
 
-
-    elif 'Query failed (SELECT * FROM WHERE id = )' in html:
+    elif "Query failed (SELECT * FROM WHERE id = )" in html:
         escopo()
         select_from_where_id()
 
