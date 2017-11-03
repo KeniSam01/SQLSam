@@ -46,8 +46,7 @@ def odbc():
     time.sleep(1)
     print hour(), "[INFO] Link: ", site
     time.sleep(1)
-    print hour(), "[INFO] Oracle Error: [MySQL][ODBC 5.1 Driver]"
-                  "[mysqld-4.1.22-community-nt-log]You have an error in your SQL syntax"
+    print hour(), "[INFO] Oracle Error: [MySQL][ODBC 5.1 Driver] [mysqld-4.1.22-community-nt-log]You have an error in your SQL syntax"
     time.sleep(1)
     print hour(), "[INFO] Method: GET"
     time.sleep(1)
